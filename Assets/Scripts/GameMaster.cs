@@ -5,5 +5,5 @@ using UnityEngine;
 public class GameMaster : MonoBehaviour
 {
     public string type = "Wheat";
-
+    public GameObject terrainSelf;
 }

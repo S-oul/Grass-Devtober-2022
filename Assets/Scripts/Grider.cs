@@ -93,10 +93,16 @@ public class Grider : MonoBehaviour
                     {
                         for(int j = -1; j < 2; j++)
                         {
+                            if ((i == -1 || i == 1) && (j == -1 || j == 1))
+                            {
 
+                            }
+                            else
+                            {
                             var go1 = Instantiate(emptyCube);
                             go1.transform.parent = grid[x, y].go.transform;
                             go1.transform.localPosition = new Vector3(i, 0, j);
+                            }
                             
                         }
                     }
