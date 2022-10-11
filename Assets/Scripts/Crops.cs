@@ -77,7 +77,7 @@ public class Crops : MonoBehaviour
             if (stageCount < plants.stages.Count - 1)
             {
                 var old = timePassed;
-                timePassed += plants.growthspeed * plants.growthOnLight.Evaluate(dayCycle.timeOfDay_Percent/100) ;
+                timePassed += plants.growthspeed * plants.growthOnLight.Evaluate(dayCycle.timeOfDay_Percent/100) *.1f;
                 print(Mathf.Abs(old - timePassed));
             }
             if (timePassed > plants.timeToChange)

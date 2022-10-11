@@ -882,10 +882,10 @@ RectTransform:
   m_Father: {fileID: 1024454135}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 112.5, y: -37.5}
-  m_SizeDelta: {x: 75, y: 75}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &640099836
 MonoBehaviour:
@@ -1396,7 +1396,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1024454135
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1406,7 +1406,7 @@ RectTransform:
   m_GameObject: {fileID: 1024454134}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.65532, y: 0.65532, z: 0.65532}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1043005066}
@@ -1519,10 +1519,10 @@ RectTransform:
   m_Father: {fileID: 1024454135}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 37.5, y: -37.5}
-  m_SizeDelta: {x: 75, y: 75}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1043005068
 CanvasRenderer:
@@ -2042,10 +2042,10 @@ RectTransform:
   m_Father: {fileID: 1024454135}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 187.5, y: -37.5}
-  m_SizeDelta: {x: 75, y: 75}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1514819158
 MonoBehaviour:
@@ -2457,16 +2457,16 @@ MonoBehaviour:
         outWeight: 1
       - serializedVersion: 3
         time: 0.2
-        value: 0.6
-        inSlope: 4.501907
-        outSlope: 4.501907
+        value: 0.27263895
+        inSlope: 0
+        outSlope: 0
         tangentMode: 0
         weightedMode: 0
         inWeight: 0.1917895
         outWeight: 1
       - serializedVersion: 3
         time: 0.3
-        value: 1
+        value: 0.4087956
         inSlope: 1.4954537
         outSlope: 1.4954537
         tangentMode: 0
@@ -2475,7 +2475,7 @@ MonoBehaviour:
         outWeight: 0.22913845
       - serializedVersion: 3
         time: 0.7
-        value: 1
+        value: 0.4087956
         inSlope: -1.5403504
         outSlope: -1.5403504
         tangentMode: 0
@@ -2484,9 +2484,9 @@ MonoBehaviour:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.8
-        value: 0.6
-        inSlope: -4.578268
-        outSlope: -4.578268
+        value: 0.27263895
+        inSlope: 0
+        outSlope: 0
         tangentMode: 0
         weightedMode: 0
         inWeight: 0.33333334
@@ -2514,25 +2514,79 @@ MonoBehaviour:
     Inte: {fileID: 21300000, guid: ae80675b49247e4499dc43b8d1d83907, type: 3}
     colInte: {r: 0.255, g: 0.07976091, b: 0.0035699995, a: 1}
   - type: CAR
-    timeToChange: 200
+    timeToChange: 90
     stages:
     - {fileID: 21300000, guid: 15dbf245cc1416f43a8b75b3faa83c87, type: 3}
     - {fileID: 21300000, guid: 7f2c5612c5a457340b1f0801627470a0, type: 3}
     - {fileID: 21300000, guid: 951b8bc3e5be519428be7734482376af, type: 3}
     - {fileID: 21300000, guid: 84798f70b008d40419d4ea697b8e8621, type: 3}
-    dropRate: 0
-    mutationChance: 0
-    growthspeed: 0
+    dropRate: 1
+    mutationChance: 1
+    growthspeed: 1
     growthOnLight:
       serializedVersion: 2
-      m_Curve: []
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0.20430997
+        inSlope: 0.017632995
+        outSlope: 0.017632995
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 1
+      - serializedVersion: 3
+        time: 0.2
+        value: 0.27263895
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.1917895
+        outWeight: 1
+      - serializedVersion: 3
+        time: 0.3
+        value: 0.4087956
+        inSlope: 1.4954537
+        outSlope: 1.4954537
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.22913845
+      - serializedVersion: 3
+        time: 0.7
+        value: 0.4087956
+        inSlope: -1.5403504
+        outSlope: -1.5403504
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.22998871
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.8
+        value: 0.27263895
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.40643755
+      - serializedVersion: 3
+        time: 1
+        value: 0.2
+        inSlope: -0.3107185
+        outSlope: -0.3107185
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.8212984
+        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    soilType: 
-    soilSpeed: 0
-    sellPrice: 0
-    purchasePrice: 0
+    soilType: dirt
+    soilSpeed: 1
+    sellPrice: 1
+    purchasePrice: 1
     Exte: {fileID: 21300000, guid: 086416cc6e10f95428c80bb02d115301, type: 3}
     colExte: {r: 0.49056602, g: 0.25242278, b: 0.23325025, a: 1}
     Mid: {fileID: 21300000, guid: b32317dc824f2414ca9e3e785ec77ca8, type: 3}
@@ -2540,26 +2594,80 @@ MonoBehaviour:
     Inte: {fileID: 21300000, guid: ae80675b49247e4499dc43b8d1d83907, type: 3}
     colInte: {r: 0.3773585, g: 0.19401923, b: 0.19401923, a: 1}
   - type: PAT
-    timeToChange: 200
+    timeToChange: 120
     stages:
     - {fileID: 21300000, guid: 1c2e27f6416b11b4f9d6340f96206cf3, type: 3}
     - {fileID: 21300000, guid: 5dcebe1d6c7d83a49b94688f11efb19a, type: 3}
     - {fileID: 21300000, guid: 1ba5037e7f866144fbe95471df15af32, type: 3}
     - {fileID: 21300000, guid: 9e5aa0ada63990f4aafec6a972eea015, type: 3}
     - {fileID: 21300000, guid: d54f6e69b76fc8d428d1ba813a273a6f, type: 3}
-    dropRate: 0
-    mutationChance: 0
-    growthspeed: 0
+    dropRate: 1
+    mutationChance: 1
+    growthspeed: 1
     growthOnLight:
       serializedVersion: 2
-      m_Curve: []
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0.20430997
+        inSlope: 0.017632995
+        outSlope: 0.017632995
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 1
+      - serializedVersion: 3
+        time: 0.2
+        value: 0.27263895
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.1917895
+        outWeight: 1
+      - serializedVersion: 3
+        time: 0.3
+        value: 0.4087956
+        inSlope: 1.4954537
+        outSlope: 1.4954537
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.22913845
+      - serializedVersion: 3
+        time: 0.7
+        value: 0.4087956
+        inSlope: -1.5403504
+        outSlope: -1.5403504
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.22998871
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.8
+        value: 0.27263895
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.40643755
+      - serializedVersion: 3
+        time: 1
+        value: 0.2
+        inSlope: -0.3107185
+        outSlope: -0.3107185
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.8212984
+        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    soilType: 
-    soilSpeed: 0
-    sellPrice: 0
-    purchasePrice: 0
+    soilType: 1
+    soilSpeed: 1
+    sellPrice: 1
+    purchasePrice: 1
     Exte: {fileID: 21300000, guid: 086416cc6e10f95428c80bb02d115301, type: 3}
     colExte: {r: 0.04909897, g: 1, b: 0, a: 0.7607843}
     Mid: {fileID: 21300000, guid: b32317dc824f2414ca9e3e785ec77ca8, type: 3}
