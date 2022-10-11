@@ -13,25 +13,28 @@ public class PlantMaster : MonoBehaviour
         public string type;
         public float timeToChange = 0;
         public List<Sprite> stages = new List<Sprite>();
+        [Header("Statistics")]
+        public float dropRate;
+        public float mutationChance;
+        public float growthspeed;
+        public AnimationCurve growthOnLight;
+        public string soilType;
+        public float soilSpeed;
+        public float sellPrice;
+        public float purchasePrice;
+
         [Space]
         [Header("Exterieur")]
         public Sprite Exte;
         public Color colExte;
-        public int speedGrowth;
         [Space]
         [Header("Milieu")]
         public Sprite Mid ;
         public Color colMid;
-        public int mutationChances;
-
         [Space]
         [Header("Interieur")]
         public Sprite Inte;
         public Color colInte;
-        public int effects;
-        [Space]
-        [Header("Statistics")]
-        public int dropMore;
     }
     void OnValidate()
     {

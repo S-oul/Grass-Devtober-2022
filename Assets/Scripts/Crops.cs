@@ -8,7 +8,9 @@ public class Crops : MonoBehaviour
     public string planteType = null;
     PlantMaster pm;
     PlantMaster.Plant plants = null;
-    public int timePassed;
+    Daycycle dayCycle;
+
+    public float timePassed;
     public int stageCount = 0;
     
     Oncam cam;
@@ -20,7 +22,7 @@ public class Crops : MonoBehaviour
     void Start()
     {
         cam = FindObjectOfType<Oncam>();
-
+        dayCycle = FindObjectOfType<Daycycle>();
         pm = FindObjectOfType<PlantMaster>();
         col = GetComponent<BoxCollider>();
     }
@@ -74,7 +76,9 @@ public class Crops : MonoBehaviour
         {
             if (stageCount < plants.stages.Count - 1)
             {
-                timePassed++;
+                var old = timePassed;
+                timePassed += plants.growthspeed * plants.growthOnLight.Evaluate(dayCycle.timeOfDay_Percent/100) ;
+                print(Mathf.Abs(old - timePassed));
             }
             if (timePassed > plants.timeToChange)
             {

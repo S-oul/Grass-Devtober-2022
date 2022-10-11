@@ -6,6 +6,7 @@ public class Daycycle : MonoBehaviour
 {
     public Light lightDay;
     public Gradient dayColor;
+    public bool pauseTime;
     [Space]
     public Light lightNight;
     public Gradient nightColor;
@@ -26,13 +27,17 @@ public class Daycycle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        timeOfDay_Percent = (timeOfDay * 100) / maxDayTime;
-        timeOfDay += Mathf.Round(Time.deltaTime*1000)/1000;
-        if(timeOfDay >= maxDayTime)
+        if (!pauseTime)
         {
-            timeOfDay = 0;
+            timeOfDay_Percent = (timeOfDay * 100) / maxDayTime;
+            timeOfDay += Mathf.Round(Time.deltaTime * 1000) / 1000;
+            if (timeOfDay >= maxDayTime)
+            {
+                timeOfDay = 0;
+            }
+            UpdateLight();
         }
-        UpdateLight();
+
     }
     public void UpdateLight()
     {
