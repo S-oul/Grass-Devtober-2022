@@ -41,7 +41,7 @@ public class Movin : MonoBehaviour
             
             transform.position += dir * Time.deltaTime * speed * posCurve.Evaluate(1/Vector2.Distance(transform.position, terrainL.transform.position));
             CurveTime += 0.01f;
-            print(1 / Vector2.Distance(transform.position, terrainL.transform.position) + " " + posCurve.Evaluate(1 / Vector2.Distance(transform.position, terrainL.transform.position)));
+//            print(1 / Vector2.Distance(transform.position, terrainL.transform.position) + " " + posCurve.Evaluate(1 / Vector2.Distance(transform.position, terrainL.transform.position)));
             if (Vector2.Distance(transform.position, terrainL.transform.position) - 1 <= .01f)
             {
                 transform.position = new Vector3(terrainL.transform.position.x, -1, terrainL.transform.position.z);
