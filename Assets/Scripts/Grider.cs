@@ -15,6 +15,7 @@ public class Grider : MonoBehaviour
     public GameObject emptyCube;
     public GameObject grassBlock;
     List<GameObject> grassList = new List<GameObject>();
+    public List<Transform> empCubelist = new List<Transform>();
     void Start()
     {
         cam = FindObjectOfType<Oncam>();
@@ -74,78 +75,53 @@ public class Grider : MonoBehaviour
     {
         foreach (Cells cell in grid)
         {
-            if (cell.type == "Grass" && cell.go.transform.childCount <2)
+            if (cell.type == "Grass" && cell.go.transform.childCount == 1)
             {
                 for (int i = -1; i < 2; i++)
                 {
                     for (int j = -1; j < 2; j++)
                     {
-                        if ((i == 0 || j == 0) && (cell.coords.x < size.x +center.x || cell.coords.x > 1) && (cell.coords.y < size.y +center.y || cell.coords.y > 1))
+                        if ((i == 0 || j == 0) /*&& (cell.coords.x < size.x -center.x || cell.coords.x > 1) && (cell.coords.y < size.y -center.y || cell.coords.y > 1)*/)
                         {
                             if (i==0 && j == 0)
                             {
                             }
                             else
                             {
+                                print(cell.go.transform);
                                 var go1 = Instantiate(emptyCube);
                                 go1.name = "OutCube " + i + " " + j; 
                                 go1.transform.parent = cell.go.transform;
                                 go1.transform.localPosition = new Vector3(i, 0, j);
+                                if (empCubelist.Count == 0)
+                                {
+                                    print("HEYHEY");
+                                    empCubelist.Add(go1.transform);
+                                }
+                                else
+                                {
+                                    foreach (Transform pos in empCubelist.ToArray())
+                                    {
+                                        if (go1.transform.position == pos.position)
+                                        {
+                                            print("DESTROY");
+                                            Destroy(go1); //destroy pos ?
+                                            break;
+                                        }
+                                        else
+                                        {
+                                            print("added");
+                                            empCubelist.Add(go1.transform);
+                                            break;
+                                        }
+                                    }
+                                }
                             }
                         }
                     }  
                 }
             }
         }
-        /*if (size.x == 1)
-        {
-
-            var go1 = Instantiate(emptyCube);
-            go1.transform.parent = grid[(int)where.x +1, (int)where.y +1].go.transform;
-            go1.transform.localPosition = new Vector3(1f, 0, 0);
-
-            var go2 = Instantiate(emptyCube);
-            go2.transform.parent = grid[(int)where.x +1, (int)where.y+1].go.transform;
-            go2.transform.localPosition = new Vector3(-1f, 0, 0);
-            return;
-        }
-        if(size.y == 1)
-        {
-            var go1 = Instantiate(emptyCube);
-            go1.transform.parent = grid[(int)where.x +1, (int)where.y +1].go.transform;
-            go1.transform.localPosition = new Vector3(0, 0, -1);
-
-            var go2 = Instantiate(emptyCube);
-            go2.transform.parent = grid[(int)where.x+1, (int)where.y +1].go.transform;
-            go2.transform.localPosition = new Vector3(0, 0, 1);
-            return;
-        }
-        for (int y = 0; y < size.y; y++)
-        {
-            for (int x = 0; x < size.x; x++)
-            {
-                if (grid[x+1, y+1].type == "Grass")
-                {
-                    for(int i = -1; i < 2; i++)
-                    {
-                        for(int j = -1; j < 2; j++)
-                        {
-                            if ((i == -1 || i == 1) && (j == -1 || j == 1))
-                            {
-
-                            }
-                            else
-                            {
-                                var go1 = Instantiate(emptyCube);
-                                go1.transform.parent = grid[x+1, y+1].go.transform;
-                                go1.transform.localPosition = new Vector3(i, 0, j);
-                            }
-                            
-                        }
-                    }
-                }
-            }
-        }*/
     }
     public void DrawOneCube(int x, int y)
     {

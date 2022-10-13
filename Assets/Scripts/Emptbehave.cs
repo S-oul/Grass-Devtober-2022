@@ -33,9 +33,10 @@ public class Emptbehave : MonoBehaviour
         }else if (Input.GetMouseButtonUp(0))
         {
             //print((int)(transform.position.x - 1.5f) + " " + (int)(transform.position.y-1.5f));
+            grider.empCubelist.Remove(gameObject.transform);
             Destroy(gameObject);    
             cam.makeShake(shake, shakeTime);
-            grider.PoseGrass((int)(transform.localPosition.x + grider.center.x), (int)(transform.localPosition.z + grider.center.y));
+            grider.PoseGrass((int)((transform.parent.localPosition.x) + transform.localPosition.x + grider.center.x), (int)((transform.parent.localPosition.z) +transform.localPosition.z + grider.center.y));
         }
         else
         {
