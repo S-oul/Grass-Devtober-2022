@@ -15,6 +15,7 @@ public class Grider : MonoBehaviour
     public GameObject emptyCube;
     public GameObject grassBlock;
     List<GameObject> grassList = new List<GameObject>();
+    [HideInInspector]
     public List<Transform> empCubelist = new List<Transform>();
     void Start()
     {
@@ -23,14 +24,6 @@ public class Grider : MonoBehaviour
         grid = new Cells[(int)size.x, (int)size.y];
         CheckGrid(false);
         PoseGrass(center.x, center.y);
-        //DrawExtCube();
-
-
-/*        var go = Instantiate(emptyCube);
-        go.name = "border";
-        go.transform.parent = transform;
-        go.GetComponent<Emptbehave>().BaseColor = Color.red;
-        go.transform.position = new Vector3((size.x+ center.x) *1.5f,-1, (center.y + size.y) * 1.5f);*/
     }
     public void CheckGrid(bool check)
     {
@@ -103,16 +96,16 @@ public class Grider : MonoBehaviour
                             }
                             else /*if (grid[i + (int)cell.coords.x, j + (int)cell.coords.x] != null)*/
                             {
-                                print(cell.go.transform);
+                                //print(cell.go.transform);
                                 var go1 = Instantiate(emptyCube);
                                 go1.name = "OutCube " + i + " " + j; 
                                 go1.transform.parent = cell.go.transform;
                                 go1.transform.localPosition = new Vector3(i, 0, j);
-                                if (3 > go1.transform.position.x && go1.transform.position.x > -3 && go1.transform.position.z > -3 && 3 > go1.transform.position.z)
+                                if ((size.x+transform.position.x) > go1.transform.position.x && go1.transform.position.x > (-size.x + transform.position.x) && go1.transform.position.z > (-size.y + transform.position.z) && (size.y + transform.position.z) > go1.transform.position.z)
                                 {
                                     if (empCubelist.Count == 0)
                                     {
-                                        print("HEYHEY");
+                                        //print("HEYHEY");
                                         empCubelist.Add(go1.transform);
                                     }
                                     else
