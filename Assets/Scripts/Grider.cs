@@ -24,6 +24,13 @@ public class Grider : MonoBehaviour
         CheckGrid(false);
         PoseGrass(center.x, center.y);
         //DrawExtCube();
+
+
+/*        var go = Instantiate(emptyCube);
+        go.name = "border";
+        go.transform.parent = transform;
+        go.GetComponent<Emptbehave>().BaseColor = Color.red;
+        go.transform.position = new Vector3((size.x+ center.x) *1.5f,-1, (center.y + size.y) * 1.5f);*/
     }
     public void CheckGrid(bool check)
     {
@@ -101,28 +108,35 @@ public class Grider : MonoBehaviour
                                 go1.name = "OutCube " + i + " " + j; 
                                 go1.transform.parent = cell.go.transform;
                                 go1.transform.localPosition = new Vector3(i, 0, j);
-                                if (empCubelist.Count == 0)
+                                if (3 > go1.transform.position.x && go1.transform.position.x > -3 && go1.transform.position.z > -3 && 3 > go1.transform.position.z)
                                 {
-                                    print("HEYHEY");
-                                    empCubelist.Add(go1.transform);
-                                }
-                                else
-                                {
-                                    foreach (Transform pos in empCubelist.ToArray())
+                                    if (empCubelist.Count == 0)
                                     {
-                                        if (go1.transform.position == pos.position)
+                                        print("HEYHEY");
+                                        empCubelist.Add(go1.transform);
+                                    }
+                                    else
+                                    {
+                                        foreach (Transform pos in empCubelist.ToArray())
                                         {
-                                            print("DESTROY");
-                                            Destroy(go1); //destroy pos ?
-                                            break;
-                                        }
-                                        else
-                                        {
-                                            print("added");
-                                            empCubelist.Add(go1.transform);
-                                            break;
+                                            if (go1.transform.position.x == pos.position.x && go1.transform.position.z == pos.position.z)
+                                            {
+                                                print("DESTROY");
+                                                Destroy(go1); //destroy pos ?
+                                                break;
+                                            }
+                                            else
+                                            {
+                                                print("added");
+                                                empCubelist.Add(go1.transform);
+                                                break;
+                                            }
                                         }
                                     }
+                                }else
+                                {
+                                    print("DESTROY OOB");
+                                    Destroy(go1);
                                 }
                             }
                         }
