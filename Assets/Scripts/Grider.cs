@@ -56,6 +56,14 @@ public class Grider : MonoBehaviour
     {
         var go = Instantiate(grassBlock);
         go.name = "Grass " + x+ "," + y;
+        foreach(GameObject gol in grassList)
+        {
+            if (gol.name == go.name)
+            {
+                Destroy(go);
+                return;
+            }
+        }
         go.transform.parent = gameObject.transform;
         go.transform.localPosition = new Vector3((x - center.x) * 1.5f, -1, (y - center.y) * 1.5f);
         go.transform.localEulerAngles = Vector3.zero;
@@ -86,7 +94,7 @@ public class Grider : MonoBehaviour
                             if (i==0 && j == 0)
                             {
                             }
-                            else
+                            else /*if (grid[i + (int)cell.coords.x, j + (int)cell.coords.x] != null)*/
                             {
                                 print(cell.go.transform);
                                 var go1 = Instantiate(emptyCube);
