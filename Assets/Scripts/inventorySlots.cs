@@ -12,12 +12,9 @@ public class inventorySlots : MonoBehaviour
     public string planteType;
 
 
-    Image Exte;
-    Image Mid;
-    Image Inte;
     [Space]
     public bool reset;
-    void OnValidate()
+    public void OnValidate()
     {
         //print(gameObject.name);
         planteType = gameObject.name;
@@ -30,25 +27,24 @@ public class inventorySlots : MonoBehaviour
                 plants = plant;
                 break;
             }
-            else
-            {
-                //print("none");
-            }
+
         }
-        Exte = transform.GetChild(0).GetComponent<Image>();
-        Exte.color = plants.colExte;
-
-        Mid = transform.GetChild(1).GetComponent<Image>();
-        Mid.color = plants.colMid;
-
-        Inte = transform.GetChild(2).GetComponent<Image>();
-        Inte.color = plants.colInte;
+        var sun = transform.GetChild(0).GetComponent<Image>();
+        sun.color = plants.Suncol;
+        var water = transform.GetChild(1).GetComponent<Image>();
+        water.color = plants.watercol;
+        var drop = transform.GetChild(2).GetComponent<Image>();
+        drop.color = plants.dropcol;
+        var soil = transform.GetChild(3).GetComponent<Image>();
+        soil.color = plants.soilcol;
+        var mut = transform.GetChild(4).GetComponent<Image>();
+        mut.color = plants.mutationcol;
     }  
 
     // Update is called once per frame
     public void ChangeType()
     {
         gm.type = planteType;
-        //print(gm.type);
+        gm.youlldrop = gameObject;
     }
 }

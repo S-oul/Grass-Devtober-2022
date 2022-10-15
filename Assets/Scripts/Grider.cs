@@ -13,8 +13,10 @@ public class Grider : MonoBehaviour
 
     Cells[,] grid = new Cells[0,0];
     public GameObject emptyCube;
+    public GameObject fusionBlock;
     public GameObject grassBlock;
     List<GameObject> grassList = new List<GameObject>();
+    public bool isFusion;
     [HideInInspector]
     public List<Transform> empCubelist = new List<Transform>();
     void Start()
@@ -23,7 +25,7 @@ public class Grider : MonoBehaviour
 
         grid = new Cells[(int)size.x, (int)size.y];
         CheckGrid(false);
-        PoseGrass(center.x, center.y);
+        PoseGrass(center.x, center.y, isFusion);
     }
     public void CheckGrid(bool check)
     {
@@ -44,19 +46,30 @@ public class Grider : MonoBehaviour
                 }
             }
         }
-        for (int y = 0; y < size.y; y++)
+/*        for (int y = 0; y < size.y; y++)
         {
             for (int x = 0; x < size.x; x++)
             {
                 //print(grid[x, y].coords);
             }
-        }
+        }*/
     }
-    public void PoseGrass(int x, int y)
+    public void PoseGrass(int x, int y, bool isFusi)
     {
-        var go = Instantiate(grassBlock);
-        go.name = "Grass " + x+ "," + y;
-        foreach(GameObject gol in grassList)
+        var go = gameObject;
+        if (!isFusi)
+        {
+            go = Instantiate(grassBlock);
+            go.name = "Grass " + x + "," + y;
+
+        }
+        else
+        {
+            go = Instantiate(fusionBlock);
+            go.name = "Fusion Grass ";
+
+        }
+        foreach (GameObject gol in grassList)
         {
             if (gol.name == go.name)
             {

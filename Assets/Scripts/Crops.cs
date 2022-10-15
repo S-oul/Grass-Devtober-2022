@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [System.Serializable]
 public class Crops : MonoBehaviour
@@ -8,7 +9,9 @@ public class Crops : MonoBehaviour
     public string planteType = null;
     PlantMaster pm;
     PlantMaster.Plant plants = null;
+    GameMaster gm;
     Daycycle dayCycle;
+    GameObject dropped;
 
     public float timePassed;
     public int stageCount = 0;
@@ -22,6 +25,7 @@ public class Crops : MonoBehaviour
     void Start()
     {
         cam = FindObjectOfType<Oncam>();
+        gm = FindObjectOfType<GameMaster>();
         dayCycle = FindObjectOfType<Daycycle>();
         pm = FindObjectOfType<PlantMaster>();
         col = GetComponent<BoxCollider>();
@@ -35,6 +39,7 @@ public class Crops : MonoBehaviour
             if (plant.type == planteType)
             {
                 plants = plant;
+                dropped = gm.youlldrop;
                 for (int i = 0; i < 4; i++)
                 {
                     var go = gameObject.transform.GetChild(i);
@@ -44,6 +49,24 @@ public class Crops : MonoBehaviour
                 break;
             }
         }
+    }
+    void dropme(GameObject dropp)
+    {
+        var go = Instantiate(dropp);
+        Destroy(go.GetComponent<RectTransform>());
+        Destroy(go.GetComponent<CanvasRenderer>());
+        Destroy(go.GetComponent<Button>());
+        Destroy(go.GetComponent<inventorySlots>());
+        var sun = go.transform.GetChild(0).gameObject.AddComponent<SpriteRenderer>(); 
+        sun.sprite = go.transform.GetChild(0).GetComponent<Image>().sprite;
+        var water = go.transform.GetChild(1).gameObject.AddComponent<SpriteRenderer>();
+        water.sprite = go.transform.GetChild(1).GetComponent<Image>().sprite;
+        var drop = go.transform.GetChild(2).gameObject.AddComponent<SpriteRenderer>();
+        drop.sprite = go.transform.GetChild(2).GetComponent<Image>().sprite;
+        var soil = go.transform.GetChild(3).gameObject.AddComponent<SpriteRenderer>();
+        soil.sprite = go.transform.GetChild(3).GetComponent<Image>().sprite;
+        var mut = go.transform.GetChild(4).gameObject.AddComponent<SpriteRenderer>();
+        mut.sprite = go.transform.GetChild(4).GetComponent<Image>().sprite;
     }
     void Deplanter()
     {
@@ -61,6 +84,12 @@ public class Crops : MonoBehaviour
     }
     void OnMouseOver()
     {
+        for (int i = 0; i < 4; i++)
+        {
+            var go = gameObject.transform.GetChild(i);
+            var sprite = go.gameObject.GetComponent<SpriteRenderer>();
+            sprite.color = Color.HSVToRGB(0,0,.80f);
+        }
         if (Input.GetMouseButton(0))
         {
 
@@ -68,6 +97,16 @@ public class Crops : MonoBehaviour
         else if (Input.GetMouseButtonUp(0))
         {
             Deplanter();
+            dropme(dropped);
+        }
+    }
+    private void OnMouseExit()
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            var go = gameObject.transform.GetChild(i);
+            var sprite = go.gameObject.GetComponent<SpriteRenderer>();
+            sprite.color = Color.HSVToRGB(0, 0, 1);
         }
     }
     void Update()

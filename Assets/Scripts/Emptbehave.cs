@@ -36,7 +36,7 @@ public class Emptbehave : MonoBehaviour
             grider.empCubelist.Remove(gameObject.transform);
             Destroy(gameObject);    
             cam.makeShake(shake, shakeTime);
-            grider.PoseGrass((int)((transform.parent.localPosition.x) + transform.localPosition.x + grider.center.x), (int)((transform.parent.localPosition.z) +transform.localPosition.z + grider.center.y));
+            grider.PoseGrass((int)((transform.parent.localPosition.x) + transform.localPosition.x + grider.center.x), (int)((transform.parent.localPosition.z) +transform.localPosition.z + grider.center.y), false);
         }
         else
         {
