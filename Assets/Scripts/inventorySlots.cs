@@ -10,6 +10,13 @@ public class inventorySlots : MonoBehaviour
     PlantMaster pm;
     PlantMaster.Plant plants = null;
     public string planteType;
+    public GameObject drapme;
+
+    Color sun;
+    Color water;
+    Color drop;
+    Color soil;
+    Color mut ;
 
 
     [Space]
@@ -29,22 +36,23 @@ public class inventorySlots : MonoBehaviour
             }
 
         }
-        var sun = transform.GetChild(0).GetComponent<Image>();
-        sun.color = plants.Suncol;
-        var water = transform.GetChild(1).GetComponent<Image>();
-        water.color = plants.watercol;
-        var drop = transform.GetChild(2).GetComponent<Image>();
-        drop.color = plants.dropcol;
-        var soil = transform.GetChild(3).GetComponent<Image>();
-        soil.color = plants.soilcol;
-        var mut = transform.GetChild(4).GetComponent<Image>();
-        mut.color = plants.mutationcol;
+        sun   = plants.Suncol;
+        water = plants.watercol;
+        drop  = plants.dropcol;
+        soil  = plants.soilcol;
+        mut   = plants.mutationcol;
+        print(plants);
     }  
 
     // Update is called once per frame
     public void ChangeType()
     {
         gm.type = planteType;
-        gm.youlldrop = gameObject;
+
+        gm.youllDrop.Suncol   = plants.Suncol;
+        gm.youllDrop.Watercol = plants.watercol;
+        gm.youllDrop.Dropcol  = plants.dropcol;
+        gm.youllDrop.Soilcol  = plants.soilcol;
+        gm.youllDrop.Mutcol   = plants.mutationcol;
     }
 }

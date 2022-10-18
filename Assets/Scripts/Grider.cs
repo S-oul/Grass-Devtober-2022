@@ -96,7 +96,7 @@ public class Grider : MonoBehaviour
     {
         foreach (Cells cell in grid)
         {
-            if (cell.type == "Grass" && cell.go.transform.childCount == 1)
+            if (cell.type == "Grass" && cell.go.transform.childCount == 2)
             {
                 for (int i = -1; i < 2; i++)
                 {

@@ -7,6 +7,9 @@ public class Emptbehave : MonoBehaviour
     Grider grider;
     Outline lines;
 
+    public GameObject grassBlock;
+    public List<GameObject> toActive;
+
     Oncam cam;
 
     public float shakeTime;
@@ -19,6 +22,11 @@ public class Emptbehave : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        foreach (GameObject Ngo in toActive)
+        {
+            Ngo.SetActive(false);
+
+        }
         cam = FindObjectOfType<Oncam>();
 
         grider = transform.parent.GetComponentInParent<Grider>();
@@ -26,7 +34,7 @@ public class Emptbehave : MonoBehaviour
     }
     void OnMouseOver()
     {
-        transform.localScale = new Vector3(.5f,.5f,.5f);
+        transform.localScale = new Vector3(.6f,.6f,.6f);
         if (Input.GetMouseButton(0))
         {
             lines.OutlineColor = ClickColor;
@@ -34,18 +42,36 @@ public class Emptbehave : MonoBehaviour
         {
             //print((int)(transform.position.x - 1.5f) + " " + (int)(transform.position.y-1.5f));
             grider.empCubelist.Remove(gameObject.transform);
+            Pose();
             Destroy(gameObject);    
             cam.makeShake(shake, shakeTime);
-            grider.PoseGrass((int)((transform.parent.localPosition.x) + transform.localPosition.x + grider.center.x), (int)((transform.parent.localPosition.z) +transform.localPosition.z + grider.center.y), false);
+            //grider.PoseGrass((int)((transform.parent.localPosition.x) + transform.localPosition.x + grider.center.x), (int)((transform.parent.localPosition.z) +transform.localPosition.z + grider.center.y), false);
         }
         else
         {
             lines.OutlineColor = OverColor;
         }
     }
+    public void Pose()
+    {
+        var go = Instantiate(grassBlock);
+        go.transform.position = transform.position;
+        go.transform.rotation = transform.rotation;
+        Vector2 posname = new Vector2(Mathf.RoundToInt(transform.localPosition.x /1.5f), Mathf.RoundToInt(transform.localPosition.z /1.5f));
+        go.name = "GrassBlock " + posname.x + " " + posname.y;
+        print("aaaaaaa");
+        go.transform.parent = transform.parent;
+        foreach(GameObject Ngo in toActive)
+        {
+            if(Ngo != null)
+            {
+                Ngo.SetActive(true);
+            }
+        }
+    }
     private void OnMouseExit()
     {
-        transform.localScale = new Vector3(.4f, .4f, .4f);
+        transform.localScale = new Vector3(.5f, .5f, .5f);
         lines.OutlineColor = BaseColor;
     }
 }
