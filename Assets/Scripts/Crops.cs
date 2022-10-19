@@ -8,7 +8,8 @@ public class Crops : MonoBehaviour
 {
     public string planteType = null;
     PlantMaster pm;
-    PlantMaster.Plant plants = null;
+    [HideInInspector]
+    public PlantMaster.Plant plants = null;
     GameMaster gm;
     Daycycle dayCycle;
     GameMaster.YoullDrop dropped;

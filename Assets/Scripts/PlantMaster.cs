@@ -66,5 +66,40 @@ public class PlantMaster : MonoBehaviour
         }
 
     }
+    public void CreatePlant(string type, float change, List<Sprite> sprites, float growth, AnimationCurve growthcurve,  Color suncol, bool needwater, float watertime, Color watercol, float droprate, Color dropcol, string soiltype, float soilspeed, Color soilcol, float mutachance, Color mutcol, float sellprice, float purchprice)
+    {
+        Plant newplant = new Plant();
+        newplant.type = type;
+        newplant.timeToChange = change;
+        newplant.stages = sprites;
 
+        newplant.growthspeed = growth;
+
+        newplant.growthOnLight = growthcurve;
+        newplant.Suncol = suncol;
+        newplant.sun = Resources.Load<Sprite>("Seeds/Sun");
+
+        newplant.needWater = needwater;
+        newplant.waterTime = watertime;
+        newplant.watercol = watercol;
+        newplant.water = Resources.Load<Sprite>("Seeds/Water");
+
+        newplant.dropRate = droprate;
+        newplant.dropcol = dropcol;
+        newplant.drop = Resources.Load<Sprite>("Seeds/Drop");
+
+        newplant.soilType = soiltype;
+        newplant.soilSpeed = soilspeed;
+        newplant.soilcol = soilcol;
+        newplant.soil = Resources.Load<Sprite>("Seeds/Soil");
+
+        newplant.mutationChance = mutachance;
+        newplant.mutationcol = mutcol;
+        newplant.mutation = Resources.Load<Sprite>("Seeds/Mutation");
+
+        newplant.sellPrice = sellprice;
+        newplant.purchasePrice = purchprice;
+
+        list.Add(newplant);
+    }
 }

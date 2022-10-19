@@ -41,11 +41,11 @@ public class Emptbehave : MonoBehaviour
         }else if (Input.GetMouseButtonUp(0))
         {
             //print((int)(transform.position.x - 1.5f) + " " + (int)(transform.position.y-1.5f));
-            grider.empCubelist.Remove(gameObject.transform);
+            //grider.empCubelist.Remove(gameObject.transform);
+            //grider.PoseGrass((int)((transform.parent.localPosition.x) + transform.localPosition.x + grider.center.x), (int)((transform.parent.localPosition.z) +transform.localPosition.z + grider.center.y), false);
             Pose();
             Destroy(gameObject);    
             cam.makeShake(shake, shakeTime);
-            //grider.PoseGrass((int)((transform.parent.localPosition.x) + transform.localPosition.x + grider.center.x), (int)((transform.parent.localPosition.z) +transform.localPosition.z + grider.center.y), false);
         }
         else
         {
@@ -61,13 +61,15 @@ public class Emptbehave : MonoBehaviour
         go.name = "GrassBlock " + posname.x + " " + posname.y;
         print("aaaaaaa");
         go.transform.parent = transform.parent;
-        foreach(GameObject Ngo in toActive)
+
+        foreach (GameObject Ngo in toActive)
         {
-            if(Ngo != null)
+            if (Ngo != null)
             {
                 Ngo.SetActive(true);
             }
         }
+        
     }
     private void OnMouseExit()
     {
