@@ -15,7 +15,6 @@ public class Grass : MonoBehaviour
     {
         if (Input.GetMouseButtonUp(0))
         {
-            print("é");
             crops.planteType = gm.type;
             crops.Planter();
         }

@@ -21,6 +21,7 @@ public class Crops : MonoBehaviour
     public float shake;
 
     BoxCollider col;
+    bool planted;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,22 +33,25 @@ public class Crops : MonoBehaviour
     }
     public void Planter()
     {
-        col.size = Vector3.one;
-        cam.makeShake(shake, shakeTime);
-        foreach (PlantMaster.Plant plant in pm.list)
+        if (!planted)
         {
-            if (plant.type == planteType)
+            planted = true;
+            col.size = Vector3.one;
+            cam.makeShake(shake, shakeTime);
+            foreach (PlantMaster.Plant plant in pm.list)
             {
-                plants = plant;
-                dropped = gm.youllDrop;
-                print(dropped.Dropcol.r);
-                for (int i = 0; i < 4; i++)
+                if (plant.type == planteType)
                 {
-                    var go = gameObject.transform.GetChild(i);
-                    var sprite = go.gameObject.GetComponent<SpriteRenderer>();
-                    sprite.sprite = plants.stages[stageCount];
+                    plants = plant;
+                    dropped = gm.youllDrop;
+                    for (int i = 0; i < 4; i++)
+                    {
+                        var go = gameObject.transform.GetChild(i);
+                        var sprite = go.gameObject.GetComponent<SpriteRenderer>();
+                        sprite.sprite = plants.stages[stageCount];
+                    }
+                    break;
                 }
-                break;
             }
         }
     }
@@ -80,6 +84,7 @@ public class Crops : MonoBehaviour
     }
     void Deplanter()
     {
+        planted = false;
         cam.makeShake(shake, shakeTime);
         plants = null;
         planteType = null;
