@@ -12,15 +12,20 @@ public class inventorySlots : MonoBehaviour
     public string planteType;
     public GameObject drapme;
 
-    Color sun;
+    /*Color sun;
     Color water;
     Color drop;
     Color soil;
-    Color mut ;
+    Color mut ;*/
 
 
     [Space]
     public bool reset;
+    public void Start()
+    {
+        OnValidate();
+        ChangeType();
+    }
     public void OnValidate()
     {
         //print(gameObject.name);
@@ -36,12 +41,18 @@ public class inventorySlots : MonoBehaviour
             }
 
         }
-        sun   = plants.Suncol;
+        transform.GetChild(0).gameObject.GetComponent<Image>().color = plants.Suncol;
+        transform.GetChild(1).gameObject.GetComponent<Image>().color = plants.watercol;
+        transform.GetChild(2).gameObject.GetComponent<Image>().color = plants.dropcol;
+        transform.GetChild(3).gameObject.GetComponent<Image>().color = plants.soilcol;
+        transform.GetChild(4).gameObject.GetComponent<Image>().color = plants.mutationcol;
+
+        /*sun   = plants.Suncol;
         water = plants.watercol;
         drop  = plants.dropcol;
         soil  = plants.soilcol;
-        mut   = plants.mutationcol;
-        print(plants);
+        mut   = plants.mutationcol;*/
+        //print(plants);
     }  
 
     // Update is called once per frame

@@ -40,6 +40,7 @@ public class Crops : MonoBehaviour
             {
                 plants = plant;
                 dropped = gm.youllDrop;
+                print(dropped.Dropcol.r);
                 for (int i = 0; i < 4; i++)
                 {
                     var go = gameObject.transform.GetChild(i);
@@ -53,7 +54,16 @@ public class Crops : MonoBehaviour
     void dropme(GameObject dropp)
     {
         var go = Instantiate(dropp);
-        go.AddComponent<Transform>();
+        go.transform.parent = transform.parent.parent;
+        //go.AddComponent<Transform>();
+        var gorb = go.AddComponent<Rigidbody>();
+        float xplus = Random.Range(-200, 200) / 100;
+        float yplus = Random.Range(-200, 200) / 100;
+        gorb.AddForce(new Vector3(xplus, 3 , yplus), ForceMode.Impulse);
+        print(xplus + " " + yplus);
+        
+        
+        go.transform.position = new Vector3(transform.position.x, transform.position.y + 1, transform.position.z);
 
         go.transform.GetChild(0).gameObject.AddComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Seeds/Sun");
         go.transform.GetChild(1).gameObject.AddComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Seeds/Water");
@@ -66,7 +76,7 @@ public class Crops : MonoBehaviour
         go.transform.GetChild(2).gameObject.GetComponent<SpriteRenderer>().color = dropped.Dropcol;
         go.transform.GetChild(3).gameObject.GetComponent<SpriteRenderer>().color = dropped.Soilcol;
         go.transform.GetChild(4).gameObject.GetComponent<SpriteRenderer>().color = dropped.Mutcol;
-
+        //Debug.LogError("caca");
     }
     void Deplanter()
     {
@@ -81,6 +91,11 @@ public class Crops : MonoBehaviour
             var sprite = go.gameObject.GetComponent<SpriteRenderer>();
             sprite.sprite = null;
         }
+
+
+
+
+        // OTHer THiNGS MAY HAPPENS
     }
     void OnMouseOver()
     {
@@ -97,7 +112,7 @@ public class Crops : MonoBehaviour
         else if (Input.GetMouseButtonUp(0))
         {
             Deplanter();
-            dropme(Resources.Load<GameObject>("Seeds/Wheat"));
+            dropme(Resources.Load<GameObject>("Seeds/Seed drop"));
         }
     }
     private void OnMouseExit()
@@ -117,7 +132,7 @@ public class Crops : MonoBehaviour
             {
                 var old = timePassed;
                 timePassed += plants.growthspeed * plants.growthOnLight.Evaluate(dayCycle.timeOfDay_Percent/100) *.1f;
-                print(Mathf.Abs(old - timePassed));
+                //print(Mathf.Abs(old - timePassed));
             }
             if (timePassed > plants.timeToChange)
             {
