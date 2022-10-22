@@ -15,13 +15,12 @@ public class Fusion : MonoBehaviour
     }
     void Fusionplant()
     {
-        string type = crop1.plants.type;
+        string type = crop1.plants.type + Random.Range(0, 2000);
         float change = (crop1.plants.timeToChange + crop2.plants.timeToChange)/2;
         List<Sprite> sprites = crop1.plants.stages;
         float growth = (crop1.plants.growthspeed + crop2.plants.growthspeed) / 2;
-        Color.RGBToHSV()
-        Color suncol = new Color(Color.HSVToRGB(1))
-        pm.CreatePlant(type, change, sprites, growth,);
+        Color suncol = Color.Lerp(crop1.plants.Suncol, crop2.plants.Suncol, .5f);
+        pm.CreatePlant(type, change, sprites, growth, AnimationCurve"?", suncol,);
         
     }
     // Update is called once per frame
