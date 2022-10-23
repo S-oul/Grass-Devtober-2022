@@ -53,7 +53,7 @@ public class PlantMaster : MonoBehaviour
         invList = FindObjectsOfType<inventorySlots>();
         foreach(inventorySlots inv in invList)
         {
-            print(inv.gameObject);
+/*          print(inv.gameObject);*/
             inv.OnValidate();
         }
         for(int i = 0; i < list.Count; i++)

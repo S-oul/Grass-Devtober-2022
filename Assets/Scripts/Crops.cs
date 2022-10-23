@@ -8,8 +8,7 @@ public class Crops : MonoBehaviour
 {
     public string planteType = null;
     PlantMaster pm;
-    [HideInInspector]
-    public PlantMaster.Plant plants = null;
+    public PlantMaster.Plant plants;
     GameMaster gm;
     Daycycle dayCycle;
     GameMaster.YoullDrop dropped;
@@ -44,6 +43,7 @@ public class Crops : MonoBehaviour
                 if (plant.type == planteType)
                 {
                     plants = plant;
+                    print(plants);
                     dropped = gm.youllDrop;
                     for (int i = 0; i < 4; i++)
                     {
