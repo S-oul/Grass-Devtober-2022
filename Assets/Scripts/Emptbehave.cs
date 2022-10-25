@@ -19,6 +19,7 @@ public class Emptbehave : MonoBehaviour
     public Color OverColor = Color.red;
     public Color ClickColor = Color.yellow;
 
+    public bool setThings = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -59,7 +60,7 @@ public class Emptbehave : MonoBehaviour
         go.transform.rotation = transform.rotation;
         Vector2 posname = new Vector2(Mathf.RoundToInt(transform.localPosition.x /1.5f), Mathf.RoundToInt(transform.localPosition.z /1.5f));
         go.name = "GrassBlock " + posname.x + " " + posname.y;
-        print("aaaaaaa");
+        //print("aaaaaaa");
         go.transform.parent = transform.parent;
 
         foreach (GameObject Ngo in toActive)
@@ -69,7 +70,10 @@ public class Emptbehave : MonoBehaviour
                 Ngo.SetActive(true);
             }
         }
-        
+        if (setThings)
+        {
+
+        }
     }
     private void OnMouseExit()
     {
