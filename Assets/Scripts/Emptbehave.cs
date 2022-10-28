@@ -19,6 +19,8 @@ public class Emptbehave : MonoBehaviour
     public Color OverColor = Color.red;
     public Color ClickColor = Color.yellow;
 
+    public GameObject fusionBlock;
+    public bool isfusion;
     public bool setThings = false;
     // Start is called before the first frame update
     void Start()
@@ -70,9 +72,22 @@ public class Emptbehave : MonoBehaviour
                 Ngo.SetActive(true);
             }
         }
-        if (setThings)
+        if (isfusion)
         {
-
+            foreach(GameObject Ngo in toActive)
+            {
+                Ngo.GetComponent<Emptbehave>().fusionBlock = go;
+            }
+        }
+        if (setThings && (posname.x == 1 || posname.y == 1))
+        {
+            print("CROPUN");
+            fusionBlock.GetComponent<Fusion>().crop1 = go.GetComponentInChildren<Crops>();
+        }
+        if (setThings && (posname.x == -1 || posname.y == -1))
+        {
+            print("CROPDE");
+            fusionBlock.GetComponent<Fusion>().crop2 = go.GetComponentInChildren<Crops>();
         }
     }
     private void OnMouseExit()

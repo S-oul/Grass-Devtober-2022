@@ -31,31 +31,40 @@ public class Crops : MonoBehaviour
         pm = FindObjectOfType<PlantMaster>();
         col = GetComponent<BoxCollider>();
     }
-    public void Planter()
+    public void Planter(PlantMaster.Plant plat)
     {
         if (!planted)
         {
             planted = true;
             col.size = Vector3.one;
             cam.makeShake(shake, shakeTime);
-            foreach (PlantMaster.Plant plant in pm.list)
+            if (plat != null)
             {
-                if (plant.type == planteType)
+                plants = plat;
+            }else
+            {
+                foreach (PlantMaster.Plant plant in pm.list)
                 {
-                    plants = plant;
-                    print(plants);
-                    dropped = gm.youllDrop;
-                    for (int i = 0; i < 4; i++)
+                    if (plant.type == planteType)
                     {
-                        var go = gameObject.transform.GetChild(i);
-                        var sprite = go.gameObject.GetComponent<SpriteRenderer>();
-                        sprite.sprite = plants.stages[stageCount];
+                        {
+                            plants = plant;
+                            break;
+                        }
                     }
-                    break;
-                }
+                }                    
+            }
+            print(plants);
+            dropped = gm.youllDrop;
+            for (int i = 0; i < 4; i++)
+            {
+                var go = gameObject.transform.GetChild(i);
+                var sprite = go.gameObject.GetComponent<SpriteRenderer>();
+                sprite.sprite = plants.stages[stageCount];
             }
         }
     }
+    
     void dropme(GameObject dropp)
     {
         var go = Instantiate(dropp);

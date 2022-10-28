@@ -9,14 +9,22 @@ public class Fusion : MonoBehaviour
     public Crops crop1;
     public Crops crop2;
 
+    public Adder add;
+
     PlantMaster.Plant plant1;
     PlantMaster.Plant plant2;
+    PlantMaster.Plant plant3;
     // Start is called before the first frame update
     void Start()
     {
         crop1.plants = plant1;
         crop2.plants = plant2;
-
+        pm = FindObjectOfType<PlantMaster>();
+        pm = FindObjectOfType<PlantMaster>();
+    }
+    private void Awake()
+    {
+        add = FindObjectOfType<Adder>();
         pm = FindObjectOfType<PlantMaster>();
     }
     void Fusionplant()
@@ -75,20 +83,25 @@ public class Fusion : MonoBehaviour
         float sellprice = (plant1.sellPrice + plant2.sellPrice) / 2;
         float purchase = (plant1.purchasePrice + plant2.purchasePrice) / 2;
 
-
-        pm.CreatePlant(type, change, sprites, growth, BothCurve, suncol, needwater, waterTime, watercol, dropRate, dropcol, soiltype, soilspeed,soilcol,mutachance,mutcol,sellprice,purchase) ;
-
+        plant3 = pm.CreatePlant(type, change, sprites, growth, BothCurve, suncol, needwater, waterTime, watercol, dropRate, dropcol, soiltype, soilspeed, soilcol, mutachance, mutcol, sellprice, purchase);
+        GetComponentInChildren<Crops>().Planter(plant3);
+        add.Add(type);
     }
     // Update is called once per frame
     void Update()
     {
         /*if(crop2 == null)
         {
-        crop1 = GameObject.Find("GrassBlock -1 0").GetComponent<Crops>();
-        crop2 = GameObject.Find("GrassBlock 1 0").GetComponent<Crops>();
+            crop2 = GameObject.Find("GrassBlock 1 0").GetComponent<Crops>();
+        }
+        if (crop1 == null)
+        {
+            crop1 = GameObject.Find("GrassBlock -1 0").GetComponent<Crops>();
         }*/
-        plant1 = crop1.plants;
+
         plant2 = crop2.plants;
+        plant1 = crop1.plants;
+
         if (Input.GetKeyDown(KeyCode.O))
         {
             Fusionplant();

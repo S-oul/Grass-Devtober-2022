@@ -66,7 +66,7 @@ public class PlantMaster : MonoBehaviour
         }
 
     }
-    public void CreatePlant(string type, float change, List<Sprite> sprites, float growth, AnimationCurve growthcurve,  Color suncol, bool needwater, float watertime, Color watercol, float droprate, Color dropcol, string soiltype, float soilspeed, Color soilcol, float mutachance, Color mutcol, float sellprice, float purchprice)
+    public PlantMaster.Plant CreatePlant(string type, float change, List<Sprite> sprites, float growth, AnimationCurve growthcurve,  Color suncol, bool needwater, float watertime, Color watercol, float droprate, Color dropcol, string soiltype, float soilspeed, Color soilcol, float mutachance, Color mutcol, float sellprice, float purchprice)
     {
         Plant newplant = new Plant();
         newplant.type = type;
@@ -101,5 +101,6 @@ public class PlantMaster : MonoBehaviour
         newplant.purchasePrice = purchprice;
 
         list.Add(newplant);
+        return newplant;
     }
 }

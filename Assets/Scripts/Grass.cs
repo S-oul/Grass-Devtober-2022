@@ -16,7 +16,7 @@ public class Grass : MonoBehaviour
         if (Input.GetMouseButtonUp(0))
         {
             crops.planteType = gm.type;
-            crops.Planter();
+            crops.Planter(null);
         }
     }
     // Update is called once per frame

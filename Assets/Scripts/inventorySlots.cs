@@ -12,13 +12,6 @@ public class inventorySlots : MonoBehaviour
     public string planteType;
     public GameObject drapme;
 
-    /*Color sun;
-    Color water;
-    Color drop;
-    Color soil;
-    Color mut ;*/
-
-
     [Space]
     public bool reset;
     public void Start()
@@ -28,7 +21,6 @@ public class inventorySlots : MonoBehaviour
     }
     public void OnValidate()
     {
-        //print(gameObject.name);
         planteType = gameObject.name;
         gm = FindObjectOfType<GameMaster>();
         pm = FindObjectOfType<PlantMaster>();
@@ -47,12 +39,6 @@ public class inventorySlots : MonoBehaviour
         transform.GetChild(3).gameObject.GetComponent<Image>().color = plants.soilcol;
         transform.GetChild(4).gameObject.GetComponent<Image>().color = plants.mutationcol;
 
-        /*sun   = plants.Suncol;
-        water = plants.watercol;
-        drop  = plants.dropcol;
-        soil  = plants.soilcol;
-        mut   = plants.mutationcol;*/
-        //print(plants);
     }  
 
     // Update is called once per frame
@@ -65,5 +51,9 @@ public class inventorySlots : MonoBehaviour
         gm.youllDrop.Dropcol  = plants.dropcol;
         gm.youllDrop.Soilcol  = plants.soilcol;
         gm.youllDrop.Mutcol   = plants.mutationcol;
+    }
+    private void Awake()
+    {
+        planteType = gameObject.name;
     }
 }
