@@ -10,7 +10,7 @@ public class inventorySlots : MonoBehaviour
     PlantMaster pm;
     PlantMaster.Plant plants = null;
     public string planteType;
-    public GameObject drapme;
+    //public GameObject drapme;
 
     [Space]
     public bool reset;

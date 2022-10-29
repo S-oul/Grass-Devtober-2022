@@ -11,7 +11,12 @@ public class Crops : MonoBehaviour
     public PlantMaster.Plant plants;
     GameMaster gm;
     Daycycle dayCycle;
-    GameMaster.YoullDrop dropped;
+
+    Color dropSunCol;
+    Color dropWaterCol;
+    Color dropSoilCol;
+    Color dropDropCol;
+    Color dropMutCol;
 
     public float timePassed;
     public int stageCount = 0;
@@ -33,6 +38,7 @@ public class Crops : MonoBehaviour
     }
     public void Planter(PlantMaster.Plant plat)
     {
+        print("oui, taace");
         if (!planted)
         {
             planted = true;
@@ -47,15 +53,19 @@ public class Crops : MonoBehaviour
                 {
                     if (plant.type == planteType)
                     {
-                        {
-                            plants = plant;
-                            break;
-                        }
+                        plants = plant;
+                        break;    
                     }
                 }                    
             }
-            print(plants);
-            dropped = gm.youllDrop;
+            print(plants.type);
+            /*dropSunCol = gm.youllDrop.Suncol;
+            dropDropCol = gm.youllDrop.Dropcol;
+            dropMutCol = gm.youllDrop.Mutcol;
+            dropSoilCol = gm.youllDrop.Soilcol;
+            dropWaterCol = gm.youllDrop.Watercol;*/
+
+            //int z = 0;
             for (int i = 0; i < 4; i++)
             {
                 var go = gameObject.transform.GetChild(i);
@@ -71,8 +81,8 @@ public class Crops : MonoBehaviour
         go.transform.parent = transform.parent.parent;
         //go.AddComponent<Transform>();
         var gorb = go.AddComponent<Rigidbody>();
-        float xplus = Random.Range(-200, 200) / 100;
-        float yplus = Random.Range(-200, 200) / 100;
+        float xplus = (float)Random.Range(-200, 200) / 100;
+        float yplus = (float)Random.Range(-200, 200) / 100;
         gorb.AddForce(new Vector3(xplus, 3 , yplus), ForceMode.Impulse);
         print(xplus + " " + yplus);
         
@@ -85,11 +95,11 @@ public class Crops : MonoBehaviour
         go.transform.GetChild(3).gameObject.AddComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Seeds/Soil");
         go.transform.GetChild(4).gameObject.AddComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Seeds/Mutation");
 
-        go.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().color = dropped.Suncol;
-        go.transform.GetChild(1).gameObject.GetComponent<SpriteRenderer>().color = dropped.Watercol;
-        go.transform.GetChild(2).gameObject.GetComponent<SpriteRenderer>().color = dropped.Dropcol;
-        go.transform.GetChild(3).gameObject.GetComponent<SpriteRenderer>().color = dropped.Soilcol;
-        go.transform.GetChild(4).gameObject.GetComponent<SpriteRenderer>().color = dropped.Mutcol;
+        go.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().color = plants.Suncol     ;
+        go.transform.GetChild(1).gameObject.GetComponent<SpriteRenderer>().color = plants.watercol   ;
+        go.transform.GetChild(2).gameObject.GetComponent<SpriteRenderer>().color = plants.dropcol    ;
+        go.transform.GetChild(3).gameObject.GetComponent<SpriteRenderer>().color = plants.soilcol    ;
+        go.transform.GetChild(4).gameObject.GetComponent<SpriteRenderer>().color = plants.mutationcol;
         //Debug.LogError("caca");
     }
     void Deplanter()
@@ -126,8 +136,8 @@ public class Crops : MonoBehaviour
         }
         else if (Input.GetMouseButtonUp(0))
         {
-            Deplanter();
             dropme(Resources.Load<GameObject>("Seeds/Seed drop"));
+            Deplanter();
         }
     }
     private void OnMouseExit()
