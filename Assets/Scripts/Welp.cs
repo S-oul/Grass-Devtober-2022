@@ -12,9 +12,31 @@ public class Welp : MonoBehaviour
     int cycles;
     inventorySlots sluuts;
     public string type;
+    inventorySlots[] gol;
     void Start()
     {
-        sluuts = GameObject.Find(type).GetComponent<inventorySlots>();
+        gol = Resources.FindObjectsOfTypeAll<inventorySlots>();
+        foreach (inventorySlots inv in gol)
+        {
+            if (inv.gameObject.name == type)
+            {
+                sluuts = inv;
+                break;
+            }
+        }
+        recup = GameObject.Find("RECUP").transform;
+    }
+    void Awake()
+    {
+        gol = Resources.FindObjectsOfTypeAll<inventorySlots>();
+        foreach (inventorySlots inv in gol)
+        {
+            if (inv.gameObject.name == type)
+            {
+                sluuts = inv;
+                break;
+            }
+        }
         recup = GameObject.Find("RECUP").transform;
     }
     private void OnMouseEnter()
@@ -59,7 +81,11 @@ public class Welp : MonoBehaviour
             transform.position += (new Vector3((recup.position.x - transform.position.x)/10, .01f, (recup.position.z - transform.position.z)/10).normalized) / 10;
             if (Vector3.Distance(transform.position, recup.position) < .5f)
             {
-                sluuts.howmANYHAVEIIII += 1;
+                sluuts.gameObject.SetActive(true);
+                if(sluuts.howmANYHAVEIIII < 9)
+                {
+                    sluuts.howmANYHAVEIIII += 1;
+                }
                 Destroy(gameObject);
             }
         }

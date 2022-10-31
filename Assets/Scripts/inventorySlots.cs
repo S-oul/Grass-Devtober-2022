@@ -24,6 +24,11 @@ public class inventorySlots : MonoBehaviour
     }
     private void Update()
     {
+        if(howmANYHAVEIIII == 0)
+        {
+            gameObject.SetActive(false);
+        }
+
         string yolo63 = "" + howmANYHAVEIIII;
         tmbro.text = yolo63;
     }

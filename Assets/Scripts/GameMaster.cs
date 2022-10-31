@@ -29,11 +29,11 @@ public class GameMaster : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.O))
         {
-            SetMoney(200);
+            AddMoney(200);
         }
         if (Input.GetKeyDown(KeyCode.P))
         {
-            SetMoney(200);
+            RemoveMoney(200);
         }
     }
     public class YoullDrop

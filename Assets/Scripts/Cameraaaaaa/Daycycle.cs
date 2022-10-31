@@ -48,9 +48,9 @@ public class Daycycle : MonoBehaviour
         float yolos = 0;
         float yolob = 0;
         Color.RGBToHSV(yolo, out yoloh, out yolos, out yolob);
-        yolob /= 4;
+        //yolob /= 4;
         yolo = Color.HSVToRGB(yoloh, yolos, yolob);
-        yolo.a = .3f;
+        //yolo.a = .3f;
         bg.color = yolo;
         transform.localEulerAngles = new Vector3(-18, -timeOfDay_Percent * 3.6f + 180, 0f);
     }
