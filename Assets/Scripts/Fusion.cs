@@ -29,7 +29,7 @@ public class Fusion : MonoBehaviour
     }
     void Fusionplant()
     {
-        string type = plant1.type + Random.Range(0, 2000);
+        string type = plant1.type + Random.Range(0, 20000);
         float change = (plant1.timeToChange + plant2.timeToChange)/2;
         List<Sprite> sprites = plant1.stages;
         float growth = (plant1.growthspeed + plant2.growthspeed) / 2;
@@ -101,10 +101,11 @@ public class Fusion : MonoBehaviour
 
         plant2 = crop2.plants;
         plant1 = crop1.plants;
-
-        if (Input.GetKeyDown(KeyCode.O))
+        if(crop1.stageCount == plant1.stages.Count -1 && crop2.stageCount == plant2.stages.Count - 1)
         {
             Fusionplant();
+            crop1.Deplanter();
+            crop2.Deplanter();
         }
     }
 }

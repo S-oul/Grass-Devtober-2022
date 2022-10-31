@@ -10,9 +10,11 @@ public class Welp : MonoBehaviour
     public Transform recup;
     bool timing = false;
     int cycles;
-
+    inventorySlots sluuts;
+    public string type;
     void Start()
     {
+        sluuts = GameObject.Find(type).GetComponent<inventorySlots>();
         recup = GameObject.Find("RECUP").transform;
     }
     private void OnMouseEnter()
@@ -57,7 +59,7 @@ public class Welp : MonoBehaviour
             transform.position += (new Vector3((recup.position.x - transform.position.x)/10, .01f, (recup.position.z - transform.position.z)/10).normalized) / 10;
             if (Vector3.Distance(transform.position, recup.position) < .5f)
             {
-                // RECUPERATOR();
+                sluuts.howmANYHAVEIIII += 1;
                 Destroy(gameObject);
             }
         }

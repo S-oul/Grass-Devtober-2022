@@ -6,7 +6,9 @@ public class Emptbehave : MonoBehaviour
 {
     Grider grider;
     Outline lines;
+    GameMaster gm;
 
+    public int myPrice = 500;
     public GameObject grassBlock;
     public List<GameObject> toActive;
 
@@ -25,6 +27,7 @@ public class Emptbehave : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        gm = FindObjectOfType<GameMaster>();
         foreach (GameObject Ngo in toActive)
         {
             Ngo.SetActive(false);
@@ -43,12 +46,16 @@ public class Emptbehave : MonoBehaviour
             lines.OutlineColor = ClickColor;
         }else if (Input.GetMouseButtonUp(0))
         {
-            //print((int)(transform.position.x - 1.5f) + " " + (int)(transform.position.y-1.5f));
-            //grider.empCubelist.Remove(gameObject.transform);
-            //grider.PoseGrass((int)((transform.parent.localPosition.x) + transform.localPosition.x + grider.center.x), (int)((transform.parent.localPosition.z) +transform.localPosition.z + grider.center.y), false);
-            Pose();
-            Destroy(gameObject);    
-            cam.makeShake(shake, shakeTime);
+            if (gm.money >= myPrice && gm.cando)
+            {
+                //print((int)(transform.position.x - 1.5f) + " " + (int)(transform.position.y-1.5f));
+                //grider.empCubelist.Remove(gameObject.transform);
+                //grider.PoseGrass((int)((transform.parent.localPosition.x) + transform.localPosition.x + grider.center.x), (int)((transform.parent.localPosition.z) +transform.localPosition.z + grider.center.y), false);
+                Pose();
+                Destroy(gameObject);    
+                cam.makeShake(shake, shakeTime);
+                gm.RemoveMoney(myPrice);
+            }
         }
         else
         {

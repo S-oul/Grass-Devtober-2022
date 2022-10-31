@@ -38,8 +38,8 @@ public class Crops : MonoBehaviour
     }
     public void Planter(PlantMaster.Plant plat)
     {
-        print("oui, taace");
-        if (!planted)
+        //print("oui, taace");
+        if (!planted && gm.cando)
         {
             planted = true;
             col.size = Vector3.one;
@@ -85,8 +85,8 @@ public class Crops : MonoBehaviour
         float yplus = (float)Random.Range(-200, 200) / 100;
         gorb.AddForce(new Vector3(xplus, 3 , yplus), ForceMode.Impulse);
         print(xplus + " " + yplus);
-        
-        
+
+        go.GetComponent<Welp>().type = planteType;
         go.transform.position = new Vector3(transform.position.x, transform.position.y + 1, transform.position.z);
 
         go.transform.GetChild(0).gameObject.AddComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Seeds/Sun");
@@ -102,25 +102,25 @@ public class Crops : MonoBehaviour
         go.transform.GetChild(4).gameObject.GetComponent<SpriteRenderer>().color = plants.mutationcol;
         //Debug.LogError("caca");
     }
-    void Deplanter()
+    public void Deplanter()
     {
-        planted = false;
-        cam.makeShake(shake, shakeTime);
-        plants = null;
-        planteType = null;
-        stageCount = 0;
-        col.size = Vector3.zero;
-        for (int i = 0; i < 4; i++)
+        if (gm.cando)
         {
-            var go = gameObject.transform.GetChild(i);
-            var sprite = go.gameObject.GetComponent<SpriteRenderer>();
-            sprite.sprite = null;
+            planted = false;
+            cam.makeShake(shake, shakeTime);
+            plants = null;
+            planteType = null;
+            stageCount = 0;
+            col.size = Vector3.zero;
+            for (int i = 0; i < 4; i++)
+            {
+                var go = gameObject.transform.GetChild(i);
+                var sprite = go.gameObject.GetComponent<SpriteRenderer>();
+                sprite.sprite = null;
+            }
+
+            //MUTATIONBITCH
         }
-
-
-
-
-        // OTHer THiNGS MAY HAPPENS
     }
     void OnMouseOver()
     {
@@ -134,8 +134,18 @@ public class Crops : MonoBehaviour
         {
 
         }
-        else if (Input.GetMouseButtonUp(0))
+        else if (Input.GetMouseButtonUp(0) && gm.cando)
         {
+            if (stageCount >= plants.stages.Count - 1)
+            {
+                /*if(Random.Range(0,1000)/1000 <= plants.mutationChance)
+                {
+
+                }*/
+                dropme(Resources.Load<GameObject>("Seeds/Seed drop"));
+                dropme(Resources.Load<GameObject>("Seeds/Seed drop"));
+                gm.AddMoney((int)plants.sellPrice);
+            }
             dropme(Resources.Load<GameObject>("Seeds/Seed drop"));
             Deplanter();
         }

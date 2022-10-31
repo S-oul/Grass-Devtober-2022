@@ -13,9 +13,10 @@ public class Grass : MonoBehaviour
     }
     private void OnMouseOver()
     {
-        if (Input.GetMouseButtonUp(0))
+        if (Input.GetMouseButtonUp(0) && GameObject.Find(gm.type).GetComponent<inventorySlots>().howmANYHAVEIIII >= 1)
         {
             crops.planteType = gm.type;
+            GameObject.Find(gm.type).GetComponent<inventorySlots>().howmANYHAVEIIII -= 1;
             crops.Planter(null);
         }
     }

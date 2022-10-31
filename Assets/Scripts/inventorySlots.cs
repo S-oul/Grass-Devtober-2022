@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 [ExecuteInEditMode]
 public class inventorySlots : MonoBehaviour
@@ -12,12 +13,19 @@ public class inventorySlots : MonoBehaviour
     public string planteType;
     //public GameObject drapme;
 
+    public int howmANYHAVEIIII = 1;
+    public TextMeshProUGUI tmbro;
     [Space]
     public bool reset;
     public void Start()
     {
         OnValidate();
         ChangeType();
+    }
+    private void Update()
+    {
+        string yolo63 = "" + howmANYHAVEIIII;
+        tmbro.text = yolo63;
     }
     public void OnValidate()
     {
@@ -31,7 +39,6 @@ public class inventorySlots : MonoBehaviour
                 plants = plant;
                 break;
             }
-
         }
         transform.GetChild(0).gameObject.GetComponent<Image>().color = plants.Suncol;
         transform.GetChild(1).gameObject.GetComponent<Image>().color = plants.watercol;

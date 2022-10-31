@@ -103,4 +103,41 @@ public class PlantMaster : MonoBehaviour
         list.Add(newplant);
         return newplant;
     }
+    public PlantMaster.Plant MutatePlant(PlantMaster.Plant MPlant)
+    {
+        Plant newplant = new Plant();
+        newplant.type = MPlant.type + Random.Range(0, 20000);
+        newplant.timeToChange = (MPlant.timeToChange +Random.Range(-(MPlant.timeToChange/100), MPlant.timeToChange / 100));
+        newplant.stages = MPlant.stages;
+
+        newplant.growthspeed = (MPlant.growthspeed + Random.Range(-(MPlant.growthspeed / 100), MPlant.growthspeed / 100));
+
+        /*newplant.growthOnLight = growthcurve;
+        newplant.Suncol = suncol;
+        newplant.sun = Resources.Load<Sprite>("Seeds/Sun");
+
+        newplant.needWater = needwater;
+        newplant.waterTime = watertime;
+        newplant.watercol = watercol;
+        newplant.water = Resources.Load<Sprite>("Seeds/Water");
+
+        newplant.dropRate = droprate;
+        newplant.dropcol = dropcol;
+        newplant.drop = Resources.Load<Sprite>("Seeds/Drop");
+
+        newplant.soilType = soiltype;
+        newplant.soilSpeed = soilspeed;
+        newplant.soilcol = soilcol;
+        newplant.soil = Resources.Load<Sprite>("Seeds/Soil");
+
+        newplant.mutationChance = mutachance;
+        newplant.mutationcol = mutcol;
+        newplant.mutation = Resources.Load<Sprite>("Seeds/Mutation");
+
+        newplant.sellPrice = sellprice;
+        newplant.purchasePrice = purchprice;
+
+        list.Add(newplant);*/
+        return newplant;
+    }
 }
