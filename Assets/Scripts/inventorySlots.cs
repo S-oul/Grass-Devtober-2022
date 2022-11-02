@@ -19,6 +19,8 @@ public class inventorySlots : MonoBehaviour
     public bool reset;
     public void Start()
     {
+        gm = FindObjectOfType<GameMaster>();
+        pm = FindObjectOfType<PlantMaster>();
         OnValidate();
         ChangeType();
     }

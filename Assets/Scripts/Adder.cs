@@ -11,13 +11,15 @@ public class Adder : MonoBehaviour
     {
         
     }
-    public void Add(string namer)
+    public void Add(string namer, bool set)
     {
+        print("caca");
         var go = Instantiate(truc);
         go.transform.parent = transform;
         go.name = namer;
         sluts = go.GetComponent<inventorySlots>();
         sluts.planteType = namer;
+        go.SetActive(set);
     }
     // Update is called once per frame
     void Update()

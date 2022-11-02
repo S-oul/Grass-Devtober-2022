@@ -20,7 +20,6 @@ public class Fusion : MonoBehaviour
         crop1.plants = plant1;
         crop2.plants = plant2;
         pm = FindObjectOfType<PlantMaster>();
-        pm = FindObjectOfType<PlantMaster>();
     }
     private void Awake()
     {
@@ -85,7 +84,7 @@ public class Fusion : MonoBehaviour
 
         plant3 = pm.CreatePlant(type, change, sprites, growth, BothCurve, suncol, needwater, waterTime, watercol, dropRate, dropcol, soiltype, soilspeed, soilcol, mutachance, mutcol, sellprice, purchase);
         GetComponentInChildren<Crops>().Planter(plant3);
-        add.Add(type);
+        add.Add(type, false);
     }
     // Update is called once per frame
     void Update()

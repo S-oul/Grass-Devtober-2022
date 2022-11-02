@@ -17,11 +17,18 @@ public class Daycycle : MonoBehaviour
     [Space]
     public float maxDayTime = 60;
     public float timeOfDay = 0;
+    PlantMaster pm;
+    SHOPTESTER shop;
 
     public SpriteRenderer bg;
     // Start is called before the first frame update
+    PlantMaster.Plant shopyplant;
     void Start()
     {
+        shop = FindObjectOfType<SHOPTESTER>();
+        pm = FindObjectOfType<PlantMaster>();
+        shop.DisplayPlant(pm.list[0]);
+
     }
 
     // Update is called once per frame
@@ -34,6 +41,19 @@ public class Daycycle : MonoBehaviour
             if (timeOfDay >= maxDayTime)
             {
                 timeOfDay = 0;
+                int relou = Random.Range(1, 3);
+                if (relou == 1)
+                {
+                   shopyplant = pm.RandomePlant(pm.list[0]);
+                }else if (relou == 2)
+                {
+                   shopyplant = pm.RandomePlant(pm.list[1]);
+                }else if (relou == 3)
+                {
+                   shopyplant = pm.RandomePlant(pm.list[2]);
+                }
+                shop.DisplayPlant(shopyplant);
+                
             }
             UpdateLight();
         }

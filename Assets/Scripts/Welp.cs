@@ -13,8 +13,12 @@ public class Welp : MonoBehaviour
     inventorySlots sluuts;
     public string type;
     inventorySlots[] gol;
+    public Adder add;
+
+
     void Start()
     {
+        add = FindObjectOfType<Adder>();
         gol = Resources.FindObjectsOfTypeAll<inventorySlots>();
         foreach (inventorySlots inv in gol)
         {
@@ -28,6 +32,7 @@ public class Welp : MonoBehaviour
     }
     void Awake()
     {
+        add = FindObjectOfType<Adder>();
         gol = Resources.FindObjectsOfTypeAll<inventorySlots>();
         foreach (inventorySlots inv in gol)
         {

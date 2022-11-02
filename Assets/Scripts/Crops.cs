@@ -86,7 +86,7 @@ public class Crops : MonoBehaviour
         gorb.AddForce(new Vector3(xplus, 3 , yplus), ForceMode.Impulse);
         print(xplus + " " + yplus);
 
-        go.GetComponent<Welp>().type = planteType;
+        go.GetComponent<Welp>().type = plants.type;
         go.transform.position = new Vector3(transform.position.x, transform.position.y + 1, transform.position.z);
 
         go.transform.GetChild(0).gameObject.AddComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Seeds/Sun");
